@@ -351,6 +351,55 @@ table.t .em{font-weight:600}
 .pair-cur b{font-family:'Prompt','Sarabun',sans-serif;font-size:20px;font-weight:600;color:var(--primary);line-height:1.3;word-break:break-word}
 .pair-cur span{font-size:14px;color:var(--on-surface-2)}
 .pair-acts{display:flex;gap:8px;flex-wrap:wrap}
+/* ---------- ใบสั่งซื้อ ---------- */
+.po-grid{display:grid;gap:16px;align-items:start}
+@media(min-width:1100px){.po-grid{grid-template-columns:290px minmax(0,1fr)}}
+.sup-list{display:grid;gap:8px;margin-top:12px;max-height:min(64vh,620px);overflow:auto;padding:2px}
+.sup-item{display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 12px;border-radius:14px;border:2px solid transparent;background:var(--bg);text-align:left;width:100%;color:inherit}
+.sup-item:hover{background:#E9EBF3}
+.sup-item.active{border-color:var(--primary);background:var(--primary-c)}
+.sup-item .t{flex:1;min-width:0}
+.sup-item b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sup-item small{display:block;color:var(--on-surface-2);font-size:13px}
+.sup-item .chip{min-height:26px;padding:2px 10px;font-size:12.5px}
+.po-in{width:100%;min-width:72px;height:40px;border:1.5px solid transparent;border-radius:10px;background:var(--bg);padding:0 10px;text-align:right;font-variant-numeric:tabular-nums;font-size:15px}
+.po-in:hover{background:#E9EBF3}
+.po-in:focus{background:#fff;border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(137,160,207,.35)}
+.po-in.miss{border-color:var(--accent);background:var(--accent-c)}
+.po-qty{display:flex;align-items:center;gap:8px}
+.po-qty .po-in{flex:1;min-width:64px}
+.po-qty span{font-size:13.5px;min-width:30px}
+.po-name{min-width:0}
+@media(max-width:700px){.po-name{text-align:right}.po-qty{justify-content:flex-end}.po-qty .po-in{flex:0 1 110px}}
+.cb{width:22px;height:22px;accent-color:var(--primary);cursor:pointer}
+tr.off td{opacity:.55}
+tr.off td:first-child{opacity:1}
+.po-foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start;margin-top:16px}
+.po-baht{flex:1 1 260px;min-width:0;padding:12px 14px;border-radius:14px;background:var(--bg)}
+.po-baht small{display:block;color:var(--on-surface-2);font-size:13px}
+.po-baht b{color:var(--primary)}
+.po-baht .field textarea{background:#fff}
+.po-tot{flex:0 1 300px;display:grid;gap:6px;min-width:240px}
+.po-tot div{display:flex;justify-content:space-between;gap:16px}
+.po-tot div span:first-child{color:var(--on-surface-2)}
+.po-tot .grand{background:var(--grad);color:#fff;border-radius:12px;padding:10px 14px;margin-top:4px;align-items:center}
+.po-tot .grand span:first-child{color:#fff;font-weight:600}
+.po-tot .grand b{font-family:'Prompt','Sarabun',sans-serif;font-size:20px;font-weight:600}
+.po-acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;border-top:2px dashed #D3D8E8;margin-top:18px;padding-top:16px}
+.po-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:20px 0 10px}
+.po-toolbar .sec{margin:0}
+details.vend{border-radius:14px;background:var(--bg);padding:0 14px}
+details.vend summary{cursor:pointer;min-height:48px;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--primary);list-style:none}
+details.vend summary::-webkit-details-marker{display:none}
+details.vend summary .ic{transition:transform .15s}
+details.vend[open] summary .ic{transform:rotate(90deg)}
+details.vend .grid{padding:0 0 14px}
+details.vend .field input{background:#fff}
+.field textarea{width:100%;min-height:92px;padding:26px 16px 8px;border:1.5px solid transparent;border-radius:var(--r-md);background:var(--bg);font:inherit;font-size:15px;resize:vertical;outline:none;color:inherit}
+.field textarea:focus{background:#fff;border-color:var(--primary);box-shadow:0 0 0 3px rgba(137,160,207,.35)}
+.field textarea+span{top:8px;font-size:12px}
+.field textarea:focus+span{color:var(--primary)}
+@media(max-width:700px){.po-in{max-width:150px}.po-tot{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media print{
   body{background:#fff}
@@ -402,6 +451,8 @@ table.t .em{font-weight:600}
 <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></symbol>
 <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 5v14M7 5v14M11 5v14M14 5v14M18 5v14M20.5 5v14"/></symbol>
 <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9 4.5 4h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v8h14v-8M9 20v-5h6v5"/></symbol>
 </defs></svg>
 
 <div id="progress"></div>
@@ -629,6 +680,43 @@ table.t .em{font-weight:600}
         </div>
       </section>
 
+      <!-- ===== ใบสั่งซื้อ ===== -->
+      <section id="tab-po" class="tab">
+        <div class="seg" id="poSeg" role="tablist" style="margin-bottom:16px">
+          <button class="active" data-act="po-view" data-v="new">สร้างใบสั่งซื้อ</button>
+          <button data-act="po-view" data-v="list">ประวัติใบสั่งซื้อ</button>
+        </div>
+        <div id="poNew">
+          <div class="po-grid">
+            <div class="card">
+              <div class="card-head"><div class="ch-l"><span class="ibub peri"><svg class="ic"><use href="#i-store"/></svg></span><div><h2>เลือกร้านค้า</h2><p class="muted">ร้านที่มีพัสดุเหลือน้อยขึ้นก่อน</p></div></div></div>
+              <div class="card-body">
+                <label class="field"><input id="poSupQ" placeholder=" " autocomplete="off"><span>ค้นหาร้านค้า</span></label>
+                <div class="sup-list" id="poSupList"></div>
+              </div>
+            </div>
+            <div class="card" id="poForm"></div>
+          </div>
+        </div>
+        <div id="poListView" hidden>
+          <div class="card">
+            <div class="card-head">
+              <div class="ch-l"><span class="ibub"><svg class="ic"><use href="#i-history"/></svg></span><div><h2>ประวัติใบสั่งซื้อ</h2><p class="muted" id="poListInfo"></p></div></div>
+              <button class="btn tonal sm" data-act="po-list-reload"><svg class="ic"><use href="#i-refresh"/></svg>โหลดใหม่</button>
+            </div>
+            <div class="card-body">
+              <label class="field" style="margin-bottom:14px"><input id="poListQ" placeholder=" " autocomplete="off"><span>ค้นหาเลขที่หรือร้านค้า</span></label>
+              <div class="table-wrap scroll">
+                <table class="t rtable">
+                  <thead><tr><th style="width:150px">เลขที่</th><th style="width:150px">วันที่</th><th>ร้านค้า</th><th class="c" style="width:80px">รายการ</th><th class="c" style="width:130px">ยอดรวม (บาท)</th><th class="c" style="width:110px">สถานะ</th><th class="c" style="width:216px">จัดการ</th></tr></thead>
+                  <tbody id="poListBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ===== เพิ่มพัสดุ ===== -->
       <section id="tab-add" class="tab">
         <div class="card narrow">
@@ -671,6 +759,7 @@ const NAV = [
   { id:'tab-admin',   icon:'clipboard',   title:'จัดการใบเบิก',         short:'ใบเบิก',   sub:'อนุมัติใบเบิก ตั้งค่ารอบ และดูรายงานสรุป', role:'admin' },
   { id:'tab-history', icon:'history',     title:'ประวัติการเบิก',       short:'ประวัติ',  sub:'ค้นหาและกรองประวัติการเบิกพัสดุ', role:'all' },
   { id:'tab-stock',   icon:'box',         title:'สถานะคลังสินค้า',      short:'คลัง',     sub:'ตรวจสอบยอดคงเหลือ จุดสั่งซื้อ และรับของเข้าคลัง', role:'admin' },
+  { id:'tab-po',      icon:'file-text',   title:'ใบสั่งซื้อ',            short:'สั่งซื้อ',  sub:'เลือกร้านค้า ใส่จำนวนและราคา แล้วพิมพ์หรือส่งออกใบสั่งซื้อ', role:'admin' },
   { id:'tab-add',     icon:'plus-circle', title:'เพิ่มรายการพัสดุ',     short:'เพิ่มพัสดุ', sub:'ลงทะเบียนพัสดุใหม่เข้าคลัง', role:'admin' }
 ];
 
@@ -681,6 +770,7 @@ const S = {
   hist:{ rows:[], total:0, truncated:false }, histShown:PAGE,
   pending:[], reports:null, repSort:'qty', repTab:'all',
   stock:[], stockFilter:'all', stockLoaded:false,
+  po:{ setup:null, at:0, items:[], bySku:{}, sup:'', drafts:{}, view:'new', list:null, cache:{} },
   tab:''
 };
 
@@ -867,6 +957,7 @@ function onEnterTab(id) {
   else if (id === 'tab-history') loadHistory();
   else if (id === 'tab-admin') { renderAdmin(); loadAdmin(); }
   else if (id === 'tab-stock') { renderStock(); loadStock(); }
+  else if (id === 'tab-po') { renderPO(); loadPOSetup(); if (S.po.view === 'list') loadPOList(); }
 }
 
 function enterApp() {
@@ -892,6 +983,7 @@ function restoreSession() {
 function logoutNow() {
   store.del('dept'); store.del('token'); store.del('tab');
   Object.assign(S, { dept:'', isAdmin:false, token:'', cart:[], cartKey:null, pending:[], reports:null, stock:[], stockLoaded:false, hist:{ rows:[], total:0, truncated:false } });
+  S.po = { setup:null, at:0, items:[], bySku:{}, sup:'', drafts:{}, view:'new', list:null, cache:{} };
   $('#loginPass').value = '';
   $('#loginDept').value = '';
   renderCart();
@@ -1220,8 +1312,11 @@ async function exportFile(fmt) {
   const type = $('#exportType').value;
   const res = await call('getExportUrl', [type, fmt, type === 'all' && S.repSort === 'name' ? 'name' : 'qty'], { token:true, busy:true, timeout:90000 });
   if (!res.ok) return showError(res, 'ส่งออกไม่สำเร็จ');
-  const w = window.open(res.url, '_blank');
-  if (!w) dialog({ icon:'success', title:'สร้างไฟล์เรียบร้อย', html:'เบราว์เซอร์บล็อกหน้าต่างใหม่ กดปุ่มด้านล่างเพื่อเปิดไฟล์<br><br><a class="btn filled" href="' + esc(res.url) + '" target="_blank" rel="noopener">เปิดไฟล์ ' + (fmt === 'pdf' ? 'PDF' : 'Excel') + '</a>', confirmText:'ปิด' });
+  openUrl(res.url, fmt);
+}
+function openUrl(url, fmt) {
+  const w = window.open(url, '_blank');
+  if (!w) dialog({ icon:'success', title:'สร้างไฟล์เรียบร้อย', html:'เบราว์เซอร์บล็อกหน้าต่างใหม่ กดปุ่มด้านล่างเพื่อเปิดไฟล์<br><br><a class="btn filled" href="' + esc(url) + '" target="_blank" rel="noopener">เปิดไฟล์ ' + (fmt === 'pdf' ? 'PDF' : 'Excel') + '</a>', confirmText:'ปิด' });
 }
 
 /* =====================================================================
@@ -1335,16 +1430,16 @@ table.form td{height:8.5mm}
   .paper:last-of-type{break-after:auto;page-break-after:auto}
 }`;
 
-function printShell(title, papers) {
+function printShell(title, papers, extraCss) {
   return '<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><title>' + esc(title) + '</title><meta name="viewport" content="width=device-width,initial-scale=1">' +
-    '<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet"><style>' + PRINT_CSS + '</style></head><body>' +
+    '<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet"><style>' + PRINT_CSS + (extraCss || '') + '</style></head><body>' +
     '<div class="bar"><div><b>' + esc(title) + '</b><span>ตั้งค่าหน้าต่างพิมพ์: กระดาษ A4 · สเกล 100% · ปิด “ส่วนหัวและท้ายกระดาษ”</span></div>' +
     '<div class="acts"><button class="pbtn" onclick="window.print()">พิมพ์ / บันทึกเป็น PDF</button><button class="pbtn ghost" onclick="window.close()">ปิด</button></div></div>' +
     papers + '</body></html>';
 }
-function openPrint(html) {
-  let w = null;
-  try { w = window.open('', '_blank'); } catch (e) { w = null; }
+function openPrint(html, pre) {
+  let w = pre && !pre.closed ? pre : null;
+  if (!w) { try { w = window.open('', '_blank'); } catch (e) { w = null; } }
   if (w) { w.document.open(); w.document.write(html); w.document.close(); try { w.focus(); } catch (e) {} return; }
   const f = document.createElement('iframe');
   f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
@@ -1633,8 +1728,8 @@ function pickItemModal(o) {
     '<div class="d-actions"><button class="btn text" data-pkc="1">ยกเลิก</button></div>', o.onClose);
   const draw = () => {
     const q = $('#pkQ', m.el).value.trim().toLowerCase();
-    const arr = S.stock.filter(i => !q || (i.name + ' ' + i.sku).toLowerCase().indexOf(q) >= 0).slice(0, 40);
-    $('#pkList', m.el).innerHTML = arr.length ? arr.map(i => '<button class="pick-item" data-pk="' + esc(i.sku) + '"><b>' + esc(i.name) + '</b><small class="muted">' + esc(i.sku) + ' · ' + esc(safeUnit(i.unit)) + (i.bc.length ? ' · มีบาร์โค้ดแล้ว' : '') + '</small></button>').join('') : '<div class="combo-empty">ไม่พบพัสดุ</div>';
+    const arr = (o.list || S.stock).filter(i => !q || (i.name + ' ' + i.sku).toLowerCase().indexOf(q) >= 0).slice(0, 40);
+    $('#pkList', m.el).innerHTML = arr.length ? arr.map(i => '<button class="pick-item" data-pk="' + esc(i.sku) + '"><b>' + esc(i.name) + '</b><small class="muted">' + esc(i.sku) + ' · ' + esc(safeUnit(i.unit)) + (o.sub ? o.sub(i) : (i.bc && i.bc.length ? ' · มีบาร์โค้ดแล้ว' : '')) + '</small></button>').join('') : '<div class="combo-empty">ไม่พบพัสดุ</div>';
   };
   draw();
   $('#pkQ', m.el).addEventListener('input', draw);
@@ -1751,6 +1846,364 @@ function scanFill() {
 }
 
 /* =====================================================================
+   ใบสั่งซื้อ (Purchase Order)
+   ===================================================================== */
+const PO_NOTE = '1. กรุณาส่งของพร้อมใบส่งของ/ใบกำกับภาษี โดยระบุเลขที่ใบสั่งซื้อนี้\n2. หากพัสดุไม่ตรงตามรายการหรือจำนวน โรงพยาบาลขอสงวนสิทธิ์ส่งคืน';
+const TH_MONTHS = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const nf2 = n => Number(n || 0).toLocaleString('th-TH', { minimumFractionDigits:2, maximumFractionDigits:2 });
+const nfq = n => Number(n || 0).toLocaleString('th-TH', { maximumFractionDigits:2 });
+const parseNum = v => { const t = String(v == null ? '' : v).replace(/,/g, '').trim(); return t === '' ? NaN : Number(t); };
+const round2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
+const isoDay = add => { const d = new Date(); d.setDate(d.getDate() + (add || 0)); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); };
+const thaiDate = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || '')); return m ? Number(m[3]) + ' ' + TH_MONTHS[Number(m[2]) - 1] + ' ' + (Number(m[1]) + 543) : '-'; };
+function readThai(n) {
+  const d = ['ศูนย์','หนึ่ง','สอง','สาม','สี่','ห้า','หก','เจ็ด','แปด','เก้า'], u = ['','สิบ','ร้อย','พัน','หมื่น','แสน'];
+  if (n === 0) return 'ศูนย์';
+  let out = '';
+  if (n >= 1000000) { out = readThai(Math.floor(n / 1000000)) + 'ล้าน'; n = n % 1000000; if (n === 0) return out; }
+  const hasHigher = out !== '', s = String(n), L = s.length;
+  for (let i = 0; i < L; i++) {
+    const dg = Number(s[i]), pos = L - i - 1;
+    if (dg === 0) continue;
+    if (pos === 0 && dg === 1 && (L > 1 || hasHigher)) out += 'เอ็ด';
+    else if (pos === 1 && dg === 2) out += 'ยี่';
+    else if (!(pos === 1 && dg === 1)) out += d[dg];
+    out += u[pos];
+  }
+  return out;
+}
+function bahtText(num) {
+  num = round2(num); if (!isFinite(num)) return '';
+  const neg = num < 0; num = Math.abs(num);
+  const b = Math.floor(num), st = Math.round((num - b) * 100);
+  return (neg ? 'ลบ' : '') + (b > 0 ? readThai(b) + 'บาท' : (st > 0 ? '' : 'ศูนย์บาท')) + (st > 0 ? readThai(st) + 'สตางค์' : 'ถ้วน');
+}
+
+const poLow = it => it.bal <= it.min;
+const poSuggest = it => poLow(it) ? Math.max(1, it.min * 2 - it.bal) : Math.max(1, it.min);
+
+async function loadPOSetup(force) {
+  const P = S.po;
+  if (!force && P.setup && Date.now() - P.at < 60000) return;
+  const res = await call('getPOSetup', [], { token:true, retry:1 });
+  if (!res.ok) {
+    if (!res.handled) toast(res.message, 'error');
+    if (!P.setup) $('#poForm').innerHTML = '<div class="card-body"><div class="empty">' + ico('alert') + '<div>' + esc(res.message) + '</div></div></div>';
+    return;
+  }
+  P.setup = res; P.at = Date.now();
+  P.items = res.items.map(r => ({ sku:String(r[0]), name:String(r[1]), unit:r[2] || '-', supplier:r[3] || '-', bal:Number(r[4]) || 0, min:Number(r[5]) || 0, price:r[6] == null ? null : Number(r[6]) }));
+  P.bySku = {}; P.items.forEach(it => { P.bySku[it.sku] = it; });
+  if (S.tab === 'tab-po' && P.view === 'new') { renderPOSuppliers(); renderPOForm(); }
+}
+function poSuppliers() {
+  const m = {};
+  S.po.items.forEach(it => { const k = it.supplier || '-'; const o = m[k] = m[k] || { name:k, n:0, low:0 }; o.n++; if (poLow(it)) o.low++; });
+  return Object.values(m).sort((a, b) => b.low - a.low || cmpTh(a.name, b.name));
+}
+function renderPO() {
+  $('#poNew').hidden = S.po.view !== 'new';
+  $('#poListView').hidden = S.po.view !== 'list';
+  $$('#poSeg button').forEach(b => b.classList.toggle('active', b.dataset.v === S.po.view));
+  if (S.po.view === 'new') { renderPOSuppliers(); renderPOForm(); } else renderPOList();
+}
+function renderPOSuppliers() {
+  const box = $('#poSupList');
+  if (!S.po.setup) { box.innerHTML = '<div class="loading-row"><div class="spinner sm"></div>กำลังโหลด...</div>'; return; }
+  const q = $('#poSupQ').value.trim().toLowerCase();
+  const list = poSuppliers().filter(x => !q || x.name.toLowerCase().indexOf(q) >= 0);
+  box.innerHTML = list.length ? list.map(x =>
+    '<button class="sup-item ' + (x.name === S.po.sup ? 'active' : '') + '" data-act="po-sup" data-sup="' + esc(x.name) + '" aria-pressed="' + (x.name === S.po.sup) + '">' +
+      av(x.name.replace(/^ร้าน\s*/, '') || x.name) + '<span class="t"><b>' + esc(x.name) + '</b><small>' + nf(x.n) + ' รายการในคลัง' + (S.po.drafts[x.name] && x.name !== S.po.sup ? ' · มีร่างค้างไว้' : '') + '</small></span>' +
+      (x.low ? '<span class="chip coral">เหลือน้อย ' + nf(x.low) + '</span>' : '') + '</button>').join('')
+    : '<div class="combo-empty">' + (S.po.items.length ? 'ไม่พบร้านค้า' : 'ยังไม่มีรายการพัสดุในคลัง') + '</div>';
+}
+function poDraft(sup) {
+  const P = S.po;
+  if (P.drafts[sup]) return P.drafts[sup];
+  const v = (P.setup.suppliers || {})[sup] || {};
+  const d = { key:null, showAll:false, extra:[], lines:{},
+    f:{ date:isoDay(0), due:isoDay(7), terms:v.terms || 'เครดิต 30 วัน', vat:'7', note:PO_NOTE, address:v.address || '', phone:v.phone || '', taxId:v.taxId || '', contact:v.contact || '' } };
+  P.items.filter(it => it.supplier === sup).forEach(it => {
+    d.lines[it.sku] = { on:poLow(it), qty:String(poSuggest(it)), price:it.price != null ? String(it.price) : '' };
+  });
+  return P.drafts[sup] = d;
+}
+function poRows(sup, d) {
+  const own = S.po.items.filter(it => it.supplier === sup && (d.showAll || poLow(it) || (d.lines[it.sku] && d.lines[it.sku].on)));
+  const extra = d.extra.map(k => S.po.bySku[k]).filter(Boolean);
+  return own.concat(extra);
+}
+function poSelectSup(sup) {
+  S.po.sup = sup; poDraft(sup);
+  renderPOSuppliers(); renderPOForm();
+  if (window.innerWidth < 1100) setTimeout(() => { const f = $('#poForm'); if (f) f.scrollIntoView({ behavior:'smooth', block:'start' }); }, 50);
+}
+function renderPOForm() {
+  const box = $('#poForm'), P = S.po;
+  if (!P.setup) { box.innerHTML = '<div class="card-body"><div class="loading-row"><div class="spinner sm"></div>กำลังโหลดข้อมูล...</div></div>'; return; }
+  if (!P.sup) { box.innerHTML = '<div class="card-body"><div class="empty">' + ico('store') + '<div>เลือกร้านค้าเพื่อเริ่มสร้างใบสั่งซื้อ</div></div></div>'; return; }
+  const sup = P.sup, d = poDraft(sup), f = d.f, rows = poRows(sup, d);
+  const fld = (k, label, type, extra) => '<label class="field"><input data-pf="' + k + '" type="' + (type || 'text') + '" placeholder=" " value="' + esc(f[k]) + '"' + (extra || '') + '><span>' + label + '</span></label>';
+  box.innerHTML =
+    '<div class="card-head"><div class="ch-l"><span class="ibub coral">' + ico('file-text') + '</span><div><h2>ใบสั่งซื้อ ' + esc(sup) + '</h2><p class="muted">เลขที่ถัดไป ' + esc(P.setup.nextNo) + ' (ระบบออกเลขจริงตอนบันทึก)</p></div></div>' +
+      '<button class="btn text sm" data-act="po-reset">เริ่มใหม่</button></div>' +
+    '<div class="card-body">' +
+      '<div class="grid g2">' + fld('date', 'วันที่ใบสั่งซื้อ', 'date') + fld('due', 'กำหนดส่งของ', 'date') + fld('terms', 'เงื่อนไขชำระเงิน') +
+        fld('vat', 'ภาษีมูลค่าเพิ่ม (%) ใส่ 0 ถ้าไม่มี', 'number', ' inputmode="decimal" min="0" max="30" step="0.01"') + '</div>' +
+      '<details class="vend" style="margin-top:14px"' + (f.address || f.phone || f.taxId || f.contact ? '' : ' open') + '><summary>' + ico('chevron') + 'ข้อมูลผู้ขาย (ระบบจำไว้ใช้ครั้งหน้า)</summary>' +
+        '<div class="grid g2">' + fld('address', 'ที่อยู่ร้านค้า') + fld('phone', 'โทรศัพท์', 'text', ' inputmode="tel"') + fld('taxId', 'เลขผู้เสียภาษี', 'text', ' inputmode="numeric"') + fld('contact', 'ผู้ติดต่อ') + '</div></details>' +
+      '<div class="po-toolbar"><h3 class="sec">รายการสั่งซื้อ <span class="chip tonal" id="poCnt"></span></h3><div class="row-actions">' +
+        '<button class="chip ' + (d.showAll ? 'active' : '') + '" data-act="po-all">' + (d.showAll ? 'กำลังแสดงทุกรายการของร้าน' : 'แสดงทุกรายการของร้าน') + '</button>' +
+        '<button class="btn tonal sm" data-act="po-add">' + ico('plus') + 'เพิ่มรายการอื่น</button></div></div>' +
+      '<div class="table-wrap scroll"><table class="t rtable"><thead><tr><th class="c" style="width:48px">สั่ง</th><th>รายการพัสดุ</th><th class="c" style="width:96px">คงเหลือ / Min</th><th class="c" style="width:150px">จำนวนสั่ง</th><th class="c" style="width:116px">ราคา/หน่วย</th><th class="c" style="width:112px">จำนวนเงิน</th></tr></thead><tbody>' +
+      (rows.length ? rows.map(it => {
+        const l = d.lines[it.sku] || (d.lines[it.sku] = { on:true, qty:String(poSuggest(it)), price:it.price != null ? String(it.price) : '' });
+        const isExtra = it.supplier !== sup, st = stockState(it);
+        return '<tr data-sku="' + esc(it.sku) + '" class="' + (l.on ? '' : 'off') + '">' +
+          '<td class="c" data-label="สั่ง"><input type="checkbox" class="cb" data-pl="on" ' + (l.on ? 'checked' : '') + ' aria-label="สั่ง ' + esc(it.name) + '"></td>' +
+          '<td data-label="รายการพัสดุ"><div class="po-name"><div class="em">' + esc(it.name) + '</div><small class="muted">' + esc(it.sku) +
+            (isExtra ? ' · ร้านเดิม: ' + esc(it.supplier) + ' <button class="bc-x" data-act="po-rm" data-sku="' + esc(it.sku) + '" aria-label="เอารายการนี้ออก">' + ico('x') + '</button>' : '') + '</small></div></td>' +
+          '<td class="c" data-label="คงเหลือ / Min"><span><span class="' + (st !== 'ok' ? 'low-hit' : '') + '">' + nfq(it.bal) + '</span> / ' + nfq(it.min) + '</span></td>' +
+          '<td data-label="จำนวนสั่ง"><div class="po-qty"><input class="po-in" data-pl="qty" inputmode="decimal" value="' + esc(l.qty) + '" aria-label="จำนวนสั่ง ' + esc(it.name) + '"><span class="muted">' + esc(safeUnit(it.unit)) + '</span></div></td>' +
+          '<td data-label="ราคา/หน่วย"><input class="po-in" data-pl="price" inputmode="decimal" placeholder="0.00" value="' + esc(l.price) + '" aria-label="ราคาต่อหน่วย ' + esc(it.name) + '"></td>' +
+          '<td class="r num" data-label="จำนวนเงิน" data-amt></td></tr>';
+      }).join('') : emptyRow(6, 'check-circle', 'ร้านนี้ไม่มีพัสดุที่เหลือน้อย กด "แสดงทุกรายการของร้าน" หรือ "เพิ่มรายการอื่น"')) +
+      '</tbody></table></div>' +
+      '<div class="po-foot"><div class="po-baht"><small>จำนวนเงิน (ตัวอักษร)</small><b id="poBaht">-</b>' +
+        '<label class="field" style="margin-top:12px"><textarea data-pf="note" placeholder=" " rows="4">' + esc(f.note) + '</textarea><span>หมายเหตุบนใบสั่งซื้อ</span></label></div>' +
+        '<div class="po-tot"><div><span>รวมเป็นเงิน</span><b id="poSub">0.00</b></div><div><span id="poVatL">ภาษีมูลค่าเพิ่ม</span><b id="poVat">0.00</b></div><div class="grand"><span>รวมทั้งสิ้น</span><b id="poTot">0.00</b></div></div></div>' +
+      '<div class="po-acts"><button class="btn accent" data-act="po-save">' + ico('save') + 'บันทึกใบสั่งซื้อ</button></div>' +
+    '</div>';
+  $$('#poForm tbody tr[data-sku]').forEach(tr => poRowAmt(tr, d));
+  poRecalc();
+}
+function poRowAmt(tr, d) {
+  const l = d.lines[tr.dataset.sku], cell = $('[data-amt]', tr); if (!l || !cell) return;
+  const q = parseNum(l.qty), p = parseNum(l.price);
+  cell.textContent = isFinite(q) && isFinite(p) && q > 0 && p >= 0 ? nf2(round2(q * round2(p))) : '-';
+}
+function poCalc(d) {
+  let sub = 0, n = 0;
+  Object.keys(d.lines).forEach(k => {
+    const l = d.lines[k]; if (!l.on || !S.po.bySku[k]) return; n++;
+    const q = parseNum(l.qty), p = parseNum(l.price);
+    if (isFinite(q) && isFinite(p) && q > 0 && p >= 0) sub += round2(q * round2(p));
+  });
+  sub = round2(sub);
+  const vr = parseNum(d.f.vat), vat = isFinite(vr) && vr > 0 ? round2(sub * vr / 100) : 0;
+  return { n, sub, vr:isFinite(vr) ? vr : 0, vat, total:round2(sub + vat) };
+}
+function poRecalc() {
+  if (!S.po.sup || !$('#poSub')) return;
+  const c = poCalc(poDraft(S.po.sup));
+  $('#poCnt').textContent = nf(c.n) + ' รายการที่เลือก';
+  $('#poSub').textContent = nf2(c.sub);
+  $('#poVatL').textContent = 'ภาษีมูลค่าเพิ่ม ' + nfq(c.vr) + '%';
+  $('#poVat').textContent = nf2(c.vat);
+  $('#poTot').textContent = nf2(c.total);
+  $('#poBaht').textContent = c.total > 0 ? bahtText(c.total) : '-';
+}
+function poOnInput(e) {
+  if (!S.po.sup) return;
+  const d = poDraft(S.po.sup), t = e.target;
+  if (t.dataset.pf) { d.f[t.dataset.pf] = t.value; d.key = null; if (t.dataset.pf === 'vat') poRecalc(); return; }
+  if (!t.dataset.pl) return;
+  const tr = t.closest('tr[data-sku]'); if (!tr) return;
+  const l = d.lines[tr.dataset.sku]; if (!l) return;
+  d.key = null;
+  if (t.dataset.pl === 'on') { l.on = t.checked; tr.classList.toggle('off', !l.on); }
+  else { l[t.dataset.pl] = t.value; t.classList.remove('miss'); }
+  poRowAmt(tr, d); poRecalc();
+}
+function poAddOther() {
+  const sup = S.po.sup, d = poDraft(sup);
+  const shown = {}; poRows(sup, d).forEach(it => { shown[it.sku] = 1; });
+  pickItemModal({ title:'เพิ่มรายการในใบสั่งซื้อ', html:'เลือกพัสดุที่จะสั่งจาก <b>' + esc(sup) + '</b> (รวมพัสดุที่ตั้งร้านอื่นไว้)',
+    list:S.po.items.filter(i => !shown[i.sku]),
+    sub:i => ' · ' + esc(i.supplier) + ' · คงเหลือ ' + nfq(i.bal),
+    onPick:sku => {
+      const it = S.po.bySku[sku]; if (!it) return;
+      if (it.supplier !== sup && d.extra.indexOf(sku) < 0) d.extra.push(sku);
+      d.lines[sku] = { on:true, qty:String(poSuggest(it)), price:it.price != null ? String(it.price) : '' };
+      d.key = null; renderPOForm();
+    } });
+}
+async function poSave() {
+  const sup = S.po.sup, d = poDraft(sup), f = d.f;
+  const on = Object.keys(d.lines).filter(k => d.lines[k].on && S.po.bySku[k]);
+  if (!on.length) return dialog({ icon:'warning', title:'ยังไม่ได้เลือกรายการ', text:'ติ๊กช่อง "สั่ง" อย่างน้อย 1 รายการ' });
+  let missP = 0, badQ = 0;
+  const trs = $$('#poForm tr[data-sku]');
+  const items = on.map(sku => {
+    const l = d.lines[sku], q = parseNum(l.qty), p = parseNum(l.price);
+    const tr = trs.find(x => x.dataset.sku === sku);
+    if (!(isFinite(p) && p >= 0)) { missP++; if (tr) $('[data-pl="price"]', tr).classList.add('miss'); }
+    if (!(isFinite(q) && q > 0)) { badQ++; if (tr) $('[data-pl="qty"]', tr).classList.add('miss'); }
+    return { sku, qty:q, price:p };
+  });
+  if (badQ) return dialog({ icon:'warning', title:'จำนวนไม่ถูกต้อง', text:'มี ' + badQ + ' รายการที่จำนวนสั่งไม่ถูกต้อง (ช่องที่ขึ้นสีแดง)' });
+  if (missP) return dialog({ icon:'warning', title:'ยังไม่ได้ใส่ราคา', text:'มี ' + missP + ' รายการที่ยังไม่ได้ใส่ราคาต่อหน่วย (ช่องที่ขึ้นสีแดง) ถ้าไม่มีค่าใช้จ่ายให้ใส่ 0' });
+  if (!f.date) return dialog({ icon:'warning', title:'ข้อมูลไม่ครบ', text:'กรุณาระบุวันที่ใบสั่งซื้อ' });
+  const vr = parseNum(f.vat);
+  if (!(isFinite(vr) && vr >= 0 && vr <= 30)) return dialog({ icon:'warning', title:'อัตราภาษีไม่ถูกต้อง', text:'ใส่ภาษีมูลค่าเพิ่มระหว่าง 0 – 30%' });
+  const c = poCalc(d);
+  const r = await dialog({ icon:'question', title:'ยืนยันออกใบสั่งซื้อ?', accent:true, confirmText:'บันทึกใบสั่งซื้อ', cancelText:'ตรวจอีกครั้ง',
+    html:'ร้านค้า: <b>' + esc(sup) + '</b><br>' + nf(items.length) + ' รายการ · รวมทั้งสิ้น <b>' + nf2(c.total) + '</b> บาท' });
+  if (!r.confirmed) return;
+  d.key = d.key || uid();
+  const res = await call('savePO', [{ supplier:sup, date:f.date, due:f.due, terms:f.terms, vat:vr, note:f.note,
+    vendor:{ address:f.address, phone:f.phone, taxId:f.taxId, contact:f.contact }, items, clientKey:d.key }], { token:true, busy:true, timeout:90000 });
+  if (!res.ok) return showError(res, 'บันทึกไม่สำเร็จ');
+  const po = res.po;
+  S.po.cache[po.no] = po; S.po.list = null;
+  delete S.po.drafts[sup];
+  poActions(po, true);
+  loadPOSetup(true);
+}
+function poActions(po, fresh) {
+  const m = modal(
+    '<div class="d-icon success">' + ico('check-circle', '" style="width:26px;height:26px') + '</div>' +
+    '<h2>' + (fresh ? 'บันทึกใบสั่งซื้อแล้ว' : 'ใบสั่งซื้อ ' + esc(po.no)) + '</h2>' +
+    '<div class="d-body">เลขที่ <b>' + esc(po.no) + '</b><br>' + esc(po.supplier) + ' · รวมทั้งสิ้น <b>' + nf2(po.total) + '</b> บาท</div>' +
+    '<div class="d-actions" style="flex-wrap:wrap"><button class="btn text" data-pa="close">ปิด</button><button class="btn tonal" data-pa="xlsx">' + ico('grid') + 'Excel</button>' +
+    '<button class="btn danger-t" data-pa="pdf">' + ico('file-text') + 'PDF</button><button class="btn filled" data-pa="print">' + ico('printer') + 'พิมพ์ A4</button></div>');
+  m.el.addEventListener('click', e => {
+    const b = e.target.closest('[data-pa]'); if (!b) return;
+    const a = b.dataset.pa;
+    if (a === 'close') return m.close();
+    if (a === 'print') printPO(po); else exportPO(po.no, a);
+  });
+}
+
+/* ---------- ประวัติใบสั่งซื้อ ---------- */
+async function loadPOList() {
+  if (!S.po.list) $('#poListBody').innerHTML = loadingRow(7);
+  const res = await call('getPOList', [], { token:true, retry:1 });
+  if (!res.ok) { if (!res.handled) $('#poListBody').innerHTML = emptyRow(7, 'alert', res.message); return; }
+  S.po.list = res.list; renderPOList();
+}
+function renderPOList() {
+  const L = S.po.list; if (!L) return;
+  const q = $('#poListQ').value.trim().toLowerCase();
+  const rows = L.filter(x => !q || (x.no + ' ' + x.supplier).toLowerCase().indexOf(q) >= 0);
+  $('#poListInfo').textContent = 'ทั้งหมด ' + nf(L.length) + ' ใบ';
+  $('#poListBody').innerHTML = rows.length ? rows.map(x => {
+    const cancel = x.status === 'ยกเลิก';
+    return '<tr><td data-label="เลขที่" class="em" style="color:var(--primary)">' + esc(x.no) + '</td>' +
+      '<td data-label="วันที่" class="muted">' + esc(thaiDate(x.date)) + '</td>' +
+      '<td data-label="ร้านค้า">' + esc(x.supplier) + '</td>' +
+      '<td class="c" data-label="รายการ">' + nf(x.count) + '</td>' +
+      '<td class="c num" data-label="ยอดรวม">' + nf2(x.total) + '</td>' +
+      '<td class="c" data-label="สถานะ"><span class="status ' + (cancel ? 'rejected' : 'issued') + '">' + esc(x.status) + '</span></td>' +
+      '<td class="c actions" data-label=""><div class="row-actions" style="justify-content:center">' +
+        '<button class="icon-btn t-ok has-lbl" data-act="po-print" data-no="' + esc(x.no) + '" title="พิมพ์ A4" aria-label="พิมพ์ A4">' + ico('printer') + '<span class="lbl">พิมพ์</span></button>' +
+        '<button class="icon-btn t-tonal has-lbl" data-act="po-xlsx" data-no="' + esc(x.no) + '" title="Excel" aria-label="ส่งออก Excel">' + ico('grid') + '<span class="lbl">Excel</span></button>' +
+        '<button class="icon-btn t-tonal has-lbl" data-act="po-pdf" data-no="' + esc(x.no) + '" title="PDF" aria-label="ส่งออก PDF">' + ico('file-text') + '<span class="lbl">PDF</span></button>' +
+        (cancel ? '' : '<button class="icon-btn t-err has-lbl" data-act="po-cancel" data-no="' + esc(x.no) + '" title="ยกเลิกใบสั่งซื้อ" aria-label="ยกเลิกใบสั่งซื้อ">' + ico('x') + '<span class="lbl">ยกเลิก</span></button>') +
+      '</div></td></tr>';
+  }).join('') : emptyRow(7, 'inbox', L.length ? 'ไม่พบใบสั่งซื้อที่ค้นหา' : 'ยังไม่มีใบสั่งซื้อ');
+}
+async function getPOFull(no) {
+  if (S.po.cache[no]) return S.po.cache[no];
+  const res = await call('getPO', [no], { token:true, busy:true });
+  if (!res.ok) { showError(res); return null; }
+  return S.po.cache[no] = res.po;
+}
+async function printPOByNo(no) {
+  if (S.po.cache[no]) return printPO(S.po.cache[no]);
+  let w = null;   // เปิดหน้าต่างทันทีตอนกด เพื่อไม่ให้เบราว์เซอร์บล็อก แล้วค่อยเติมเนื้อหา
+  try { w = window.open('', '_blank'); if (w) w.document.write('<p style="font-family:sans-serif;padding:24px">กำลังโหลดใบสั่งซื้อ...</p>'); } catch (e) { w = null; }
+  const po = await getPOFull(no);
+  if (!po) { if (w) w.close(); return; }
+  printPO(po, w);
+}
+async function exportPO(no, fmt) {
+  const res = await call('getPOExportUrl', [no, fmt], { token:true, busy:true, timeout:90000 });
+  if (!res.ok) return showError(res, 'ส่งออกไม่สำเร็จ');
+  openUrl(res.url, fmt);
+}
+async function poCancel(no) {
+  const r = await dialog({ icon:'warning', title:'ยกเลิกใบสั่งซื้อ ' + no + '?', text:'ใบสั่งซื้อจะยังอยู่ในประวัติ แต่สถานะเป็น "ยกเลิก" และพิมพ์ออกมาจะมีตรายกเลิก', confirmText:'ยกเลิกใบสั่งซื้อ', cancelText:'ไม่ยกเลิก', danger:true });
+  if (!r.confirmed) return;
+  const res = await call('cancelPO', [no], { token:true, busy:true });
+  if (!res.ok) return showError(res);
+  delete S.po.cache[no]; S.po.list = res.list; S.po.at = 0;
+  renderPOList(); toast(res.message);
+}
+
+/* ---------- หน้าพิมพ์ใบสั่งซื้อ A4 ---------- */
+const PO_CSS = `
+.paper{position:relative}
+.po-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.po-org{display:flex;gap:11px;align-items:flex-start;min-width:0}
+.po-org .on{font-family:'Prompt','Sarabun',sans-serif;font-size:14.5pt;font-weight:600;color:#2A3C76;line-height:1.25}
+.po-org .oi{font-size:9pt;color:#5E6A8C;line-height:1.45}
+.po-ttl{text-align:right;flex:none}
+.po-ttl b{display:block;font-family:'Prompt','Sarabun',sans-serif;font-size:22pt;font-weight:600;color:#2A3C76;line-height:1.1}
+.po-ttl span{font-size:8.5pt;font-weight:700;letter-spacing:.16em;color:#D9393F}
+.po-boxes{display:flex;gap:9pt;margin:2pt 0 10pt;break-inside:avoid}
+.po-v{flex:1.15;min-width:0;border:.6pt solid #B9C4E0;border-radius:5pt;padding:6pt 9pt;font-size:9.5pt}
+.po-v .k{font-size:8.5pt;font-weight:700;color:#2A3C76}
+.po-v .n{font-size:12pt;font-weight:700;margin:1pt 0}
+.po-m{flex:1;min-width:0;border:.6pt solid #B9C4E0;border-radius:5pt;overflow:hidden;font-size:9.5pt}
+.po-m div{display:flex;border-bottom:.5pt solid #E1E4EE}
+.po-m div:last-child{border-bottom:0}
+.po-m span:first-child{flex:0 0 31mm;background:#F1F2F6;color:#2A3C76;font-weight:600;padding:3pt 7pt}
+.po-m span:last-child{padding:3pt 7pt;min-width:0}
+.po-m b{font-size:11pt}
+td.r,th.r{text-align:right}
+.po-items th{white-space:nowrap;padding:3.5pt 5pt}
+.po-items td{height:7mm}
+.po-sum{display:flex;gap:9pt;align-items:flex-start;break-inside:avoid;page-break-inside:avoid}
+.po-sum .l{flex:1;min-width:0;display:flex;flex-direction:column;gap:6pt}
+.po-sum .bx{border:.6pt solid #B9C4E0;border-radius:5pt;padding:5pt 9pt;font-size:9.5pt}
+.po-sum .bx .k{font-weight:700;color:#2A3C76;font-size:8.5pt}
+.po-sum .bx.w b{font-size:11pt}
+.po-sum .note{white-space:pre-wrap}
+table.tot{width:66mm;flex:none;table-layout:auto;margin:0}
+table.tot td{padding:4pt 7pt}
+table.tot td:first-child{background:#F1F2F6;color:#2A3C76;font-weight:600}
+table.tot td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+table.tot tr.g td{background:#2A3C76!important;color:#fff!important;font-weight:700;font-size:11.5pt}
+.sign3{display:flex;gap:8mm;margin-top:16mm;break-inside:avoid;page-break-inside:avoid}
+.sign3>div{flex:1;text-align:center;font-size:9.5pt}
+.sign3 .line{border-bottom:.6pt solid #1E2748;height:13mm;margin:0 4mm 4pt}
+.sign3 b{display:block;font-size:10pt}
+.sign3 span{color:#5E6A8C;display:block}
+.po-ft{display:flex;justify-content:space-between;gap:10pt;margin-top:8mm;padding-top:5pt;border-top:.5pt solid #E1E4EE;font-size:8.5pt;color:#5E6A8C}
+.void{position:absolute;left:0;right:0;top:95mm;text-align:center;font-family:'Prompt','Sarabun',sans-serif;font-size:80pt;font-weight:600;color:rgba(217,57,63,.14);transform:rotate(-24deg);pointer-events:none;z-index:5}
+@media print{.void{position:fixed;top:100mm}}`;
+function poPaper(po) {
+  const H = po.hospital || {}, V = po.vendor || {}, items = po.items || [];
+  const hosp = [H.address, H.phone ? 'โทร ' + H.phone : '', H.taxId ? 'เลขประจำตัวผู้เสียภาษี ' + H.taxId : ''].filter(Boolean);
+  const pad = Math.max(0, 8 - items.length);
+  const rows = items.map((it, i) => '<tr><td class="c">' + (i + 1) + '</td><td>' + esc(it.sku) + '</td><td>' + esc(it.name) + '</td><td class="c">' + nfq(it.qty) + '</td><td class="c">' + esc(safeUnit(it.unit)) + '</td><td class="r">' + nf2(it.price) + '</td><td class="r">' + nf2(it.amount) + '</td></tr>').join('') +
+    Array(pad + 1).join('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+  return '<div class="paper">' + (po.status === 'ยกเลิก' ? '<div class="void">ยกเลิก</div>' : '') +
+    '<div class="po-top"><div class="po-org"><img class="logo" src="' + LOGO + '" alt=""><div><div class="on">' + esc(H.name || HOSPITAL) + '</div>' + hosp.map(x => '<div class="oi">' + esc(x) + '</div>').join('') + '</div></div>' +
+      '<div class="po-ttl"><b>ใบสั่งซื้อ</b><span>PURCHASE ORDER</span></div></div>' +
+    '<div class="rule"></div>' +
+    '<div class="po-boxes"><div class="po-v"><div class="k">ผู้ขาย (Vendor)</div><div class="n">' + esc(po.supplier) + '</div>' +
+        (V.address ? '<div>' + esc(V.address) + '</div>' : '') +
+        ((V.phone || V.taxId) ? '<div>' + [V.phone ? 'โทร ' + esc(V.phone) : '', V.taxId ? 'เลขผู้เสียภาษี ' + esc(V.taxId) : ''].filter(Boolean).join(' · ') + '</div>' : '') +
+        (V.contact ? '<div>ผู้ติดต่อ ' + esc(V.contact) + '</div>' : '') + '</div>' +
+      '<div class="po-m"><div><span>เลขที่ใบสั่งซื้อ</span><span><b>' + esc(po.no) + '</b></span></div><div><span>วันที่</span><span>' + esc(thaiDate(po.date)) + '</span></div>' +
+        '<div><span>กำหนดส่งของ</span><span>' + esc(po.due ? thaiDate(po.due) : '-') + '</span></div><div><span>เงื่อนไขชำระเงิน</span><span>' + esc(po.terms || '-') + '</span></div></div></div>' +
+    '<table class="po-items"><colgroup><col style="width:8%"><col style="width:11%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:13%"><col style="width:15%"></colgroup>' +
+      '<thead><tr><th class="c">ลำดับ</th><th>รหัส</th><th>รายการพัสดุ</th><th class="c">จำนวน</th><th class="c">หน่วย</th><th class="r">ราคา/หน่วย</th><th class="r">จำนวนเงิน</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="po-sum"><div class="l"><div class="bx w"><div class="k">จำนวนเงิน (ตัวอักษร)</div><b>' + esc(bahtText(po.total)) + '</b></div>' +
+        (po.note ? '<div class="bx"><div class="k">หมายเหตุ</div><div class="note">' + esc(po.note) + '</div></div>' : '') + '</div>' +
+      '<table class="tot"><tbody><tr><td>รวมเป็นเงิน</td><td>' + nf2(po.subtotal) + '</td></tr><tr><td>ภาษีมูลค่าเพิ่ม ' + nfq(po.vat) + '%</td><td>' + nf2(po.vatAmt) + '</td></tr><tr class="g"><td>รวมทั้งสิ้น</td><td>' + nf2(po.total) + '</td></tr></tbody></table></div>' +
+    '<div class="sign3">' + ['ผู้จัดทำ (เจ้าหน้าที่พัสดุ)', 'ผู้อนุมัติสั่งซื้อ', 'ผู้ขาย (ผู้รับใบสั่งซื้อ)'].map(t => '<div><div class="line"></div><b>' + t + '</b><span>(........................................)</span><span>วันที่ ____/____/____</span></div>').join('') + '</div>' +
+    '<div class="po-ft"><span>ออกโดยระบบพัสดุออนไลน์ ' + esc(H.name || HOSPITAL) + '</span><span>พิมพ์เมื่อ ' + esc(fmtDateTime(new Date())) + '</span></div>' +
+  '</div>';
+}
+function printPO(po, pre) {
+  openPrint(printShell('ใบสั่งซื้อ ' + po.no + ' - ' + po.supplier, poPaper(po), PO_CSS), pre);
+}
+
+/* =====================================================================
    ผูกเหตุการณ์
    ===================================================================== */
 const ACT = {
@@ -1773,7 +2226,7 @@ const ACT = {
   'export': el => exportFile(el.dataset.fmt),
   'print-report': printReport,
   'rep-tab': el => setRepTab(el.dataset.rep),
-  'sort-total': el => { S.repSort = el.dataset.v; $$('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === S.repSort)); renderReports(); },
+  'sort-total': el => { S.repSort = el.dataset.v; $$('#panel-all .seg button').forEach(b => b.classList.toggle('active', b.dataset.v === S.repSort)); renderReports(); },
   'archive': archiveRound,
   'stock-reload': () => { S.stockLoaded = false; renderStock(); loadStock(); },
   'stock-filter': el => { S.stockFilter = el.dataset.v; renderStock(); },
@@ -1783,6 +2236,18 @@ const ACT = {
   'scan-request': scanRequest,
   'scan-pair': scanToPair,
   'pair-run': startPairing,
+  'po-view': el => { S.po.view = el.dataset.v; renderPO(); if (S.po.view === 'list') loadPOList(); },
+  'po-sup': el => poSelectSup(el.dataset.sup),
+  'po-all': () => { const d = poDraft(S.po.sup); d.showAll = !d.showAll; renderPOForm(); },
+  'po-add': poAddOther,
+  'po-rm': el => { const d = poDraft(S.po.sup), k = el.dataset.sku; d.extra = d.extra.filter(x => x !== k); delete d.lines[k]; d.key = null; renderPOForm(); },
+  'po-reset': async () => { const r = await dialog({ icon:'question', title:'เริ่มใบสั่งซื้อร้านนี้ใหม่?', text:'จำนวนและราคาที่แก้ไว้จะถูกล้าง', confirmText:'เริ่มใหม่', cancelText:'ยกเลิก' }); if (r.confirmed) { delete S.po.drafts[S.po.sup]; renderPOForm(); renderPOSuppliers(); } },
+  'po-save': poSave,
+  'po-list-reload': () => loadPOList(),
+  'po-print': el => printPOByNo(el.dataset.no),
+  'po-xlsx': el => exportPO(el.dataset.no, 'xlsx'),
+  'po-pdf': el => exportPO(el.dataset.no, 'pdf'),
+  'po-cancel': el => poCancel(el.dataset.no),
   'scan-fill': scanFill,
   'barcode': el => manageBarcodes(el.dataset.sku),
   'cart-inc': el => bumpCart(+el.dataset.i, 1),
@@ -1796,6 +2261,10 @@ function bind() {
   });
 
   bindWedge();
+  $('#poForm').addEventListener('input', poOnInput);
+  $('#poForm').addEventListener('change', e => { if (e.target.type === 'checkbox' || e.target.type === 'date') poOnInput(e); });
+  $('#poSupQ').addEventListener('input', renderPOSuppliers);
+  $('#poListQ').addEventListener('input', renderPOList);
   $('#loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doDeptLogin(); });
   $('#qty').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCart(); } });
 
