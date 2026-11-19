@@ -848,7 +848,7 @@ function prog(on) { progN = Math.max(0, progN + (on ? 1 : -1)); $('#progress').c
 // ===== ตั้งค่าที่นี่ =====
 // วางลิงก์ Web app ของ Apps Script (ลงท้ายด้วย /exec) เมื่อวางหน้านี้บน GitHub Pages
 // ถ้าเปิดหน้านี้ผ่าน Apps Script โดยตรง ไม่ต้องใส่ค่านี้
-const API_URL = 'https://script.google.com/macros/s/AKfycbySv38lB4OYMFV-7y02GBTaQFDYv0bXyiQ7o_eiKZhFEPJ2ZBZblp6RVy2qhphlyGpZzg/exec';
+const API_URL = '';
 
 const hasGas = () => typeof google !== 'undefined' && google.script && google.script.run;
 
@@ -1489,10 +1489,45 @@ function renderStock() {
       '<td class="c num ' + (st !== 'ok' ? 'low-hit' : '') + '" data-label="คงเหลือ" style="font-size:16px">' + nf(i.bal) + '</td><td class="c" data-label="สถานะ">' + chip + '</td>' +
       '<td class="c actions" data-label=""><div class="row-actions" style="justify-content:center">' +
         '<button class="icon-btn t-tonal has-lbl" data-act="restock" data-sku="' + esc(i.sku) + '" title="รับของเข้าคลัง" aria-label="รับของเข้าคลัง">' + ico('plus') + '<span class="lbl">รับเข้า</span></button>' +
+        '<button class="icon-btn t-tonal has-lbl" data-act="edit-item" data-sku="' + esc(i.sku) + '" title="แก้ไขรายละเอียด" aria-label="แก้ไขรายละเอียด">' + ico('edit') + '<span class="lbl">แก้ไข</span></button>' +
         (isDrug() ? '<button class="icon-btn t-tonal has-lbl" data-act="lots" data-sku="' + esc(i.sku) + '" title="ดู Lot และวันหมดอายุ" aria-label="ดู Lot และวันหมดอายุ">' + ico('calendar') + '<span class="lbl">Lot (' + i.lots.length + ')</span></button>' : '') +
         '<button class="icon-btn t-tonal has-lbl" data-act="barcode" data-sku="' + esc(i.sku) + '" title="จัดการบาร์โค้ด" aria-label="จัดการบาร์โค้ด">' + ico('barcode') + '<span class="lbl">บาร์โค้ด' + (i.bc.length ? ' (' + i.bc.length + ')' : '') + '</span></button></div></td></tr>';
   }).join('') : emptyRow(7, 'inbox', 'ไม่พบรายการพัสดุตามเงื่อนไข');
 }
+// แก้ไขรายละเอียด: รหัส SKU แสดงอย่างเดียว แก้ไม่ได้
+function editItem(sku) {
+  const it = S.stock.find(i => i.sku === sku); if (!it) return;
+  const w = itemWord();
+  const m = modal('<h2>แก้ไขรายละเอียด' + esc(w) + '</h2><div class="d-body">ยอดคงเหลือ ' + nf(it.bal) + ' ' + esc(safeUnit(it.unit)) + ' (เปลี่ยนยอดผ่านปุ่ม "รับเข้า")</div>' +
+    '<div class="stack" style="margin-top:16px">' +
+      '<label class="field"><input id="eiSku" placeholder=" " value="' + esc(it.sku) + '" disabled aria-readonly="true"><span>รหัส SKU (แก้ไขไม่ได้)</span></label>' +
+      '<label class="field"><input id="eiName" placeholder=" " autocomplete="off" maxlength="200" value="' + esc(it.name) + '"><span>ชื่อ' + esc(w) + '</span></label>' +
+      '<div class="grid g2"><label class="field"><input id="eiUnit" placeholder=" " autocomplete="off" maxlength="40" value="' + esc(it.unit === '-' ? '' : it.unit) + '"><span>หน่วยนับ</span></label>' +
+      '<label class="field"><input id="eiMin" type="number" inputmode="decimal" min="0" placeholder=" " value="' + esc(it.min) + '"><span>จุดสั่งซื้อ (Min)</span></label></div>' +
+      '<label class="field"><input id="eiSup" placeholder=" " autocomplete="off" maxlength="120" value="' + esc(it.supplier === '-' ? '' : it.supplier) + '"><span>ร้านค้า / ซัพพลายเออร์</span></label>' +
+    '</div><div class="d-err" id="eiErr" role="alert"></div>' +
+    '<p class="muted" style="margin-top:8px;font-size:13px">' + (isDrug() ? 'Lot วันหมดอายุ และบาร์โค้ด จัดการจากปุ่ม "Lot" และ "บาร์โค้ด" ในแถวเดียวกัน' : 'บาร์โค้ดจัดการจากปุ่ม "บาร์โค้ด" ในแถวเดียวกัน') + '</p>' +
+    '<div class="d-actions"><button class="btn text" data-ei="0">ยกเลิก</button><button class="btn filled" data-ei="1">' + ico('save') + 'บันทึกการแก้ไข</button></div>');
+  const err = t => { $('#eiErr', m.el).textContent = t; };
+  let busyNow = false;
+  const go = async () => {
+    if (busyNow) return;
+    const v = id => $('#' + id, m.el).value.trim();
+    if (!v('eiName')) { err('กรุณาระบุชื่อรายการ'); return $('#eiName', m.el).focus(); }
+    const mn = v('eiMin');
+    if (mn === '' || !(Number(mn) >= 0)) { err('จุดสั่งซื้อต้องเป็นตัวเลขตั้งแต่ 0 ขึ้นไป'); return $('#eiMin', m.el).focus(); }
+    busyNow = true;
+    const res = await call('updateInventoryItem', [it.sku, { name:v('eiName'), unit:v('eiUnit'), supplier:v('eiSup'), min:mn }], { token:true, busy:true });
+    busyNow = false;
+    if (!res.ok) return err(res.message);
+    m.close(); applyStock(res.items, res.lots); toast(res.message);
+    S.lastBoot = 0; S.po.at = 0;   // ให้หน้าเบิกและใบสั่งซื้อโหลดชื่อใหม่
+  };
+  m.el.addEventListener('click', e => { const b = e.target.closest('[data-ei]'); if (!b) return; if (b.dataset.ei === '1') go(); else m.close(); });
+  m.el.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); go(); } });
+  setTimeout(() => { const n = $('#eiName', m.el); if (n) n.focus(); }, 60);
+}
+
 async function restock(sku) {
   const it = S.stock.find(i => i.sku === sku); if (!it) return;
   if (isDrug()) return restockDrug(it);
@@ -2462,6 +2497,7 @@ const ACT = {
   'stock-reload': () => { S.stockLoaded = false; renderStock(); loadStock(); },
   'stock-filter': el => { S.stockFilter = el.dataset.v; renderStock(); },
   'restock': el => restock(el.dataset.sku),
+  'edit-item': el => editItem(el.dataset.sku),
   'print-stock': printStockForm,
   'save-item': saveNewItem,
   'scan-request': scanRequest,
